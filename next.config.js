@@ -1,3 +1,4 @@
 module.exports = {
-  swcMinify: false
+  swcMinify: false,
+  basePath: '/nextjs',
 }
