@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import styles from './index.module.css'
 import utilStyles from '../../styles/utils.module.css'
+import { BASE_PATH } from '../../constants'
 
 const name = '木灬文'
 export const siteTitle = 'Next.js Sample Website'
@@ -31,7 +32,7 @@ export default function Layout({ children, home }) {
           <>
             <Image
               priority
-              src="/images/profile.jpg"
+              src={BASE_PATH + "/images/profile.jpg"}
               className={utilStyles.borderCircle}
               height={144}
               width={144}
