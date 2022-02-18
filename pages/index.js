@@ -3,10 +3,10 @@ import Link from 'next/link'
 import Alert from '../components/alert'
 import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout/'
-import { getSortedPostsData } from '../lib/posts'
+import { getAllApiIds, getSortedPostsData } from '../lib/posts'
 import utilStyles from '../styles/utils.module.css'
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, apiIds }) {
   return (
     <Layout home>
       <Head>
@@ -37,15 +37,35 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Api</h2>
+        <ul className={utilStyles.list}>
+          {apiIds.map(({ id }) => (
+            <li className={utilStyles.listItem} key={id}>
+              <Link href={`/api/${id}`}>{id}</Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Url Redirect</h2>
+        <ul className={utilStyles.list}>
+          <li className={utilStyles.listItem}>
+            <Link href={`/about`}>About</Link>
+          </li>
+        </ul>
+      </section>
     </Layout>
   )
 }
 
 export async function getStaticProps() { // getServerSideProps
   const allPostsData = getSortedPostsData();
+  const apiIds = getAllApiIds();
   return {
     props: {
-      allPostsData
+      allPostsData,
+      apiIds
     }
   }
 }
