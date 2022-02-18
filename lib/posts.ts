@@ -10,7 +10,7 @@ const apisDirectory = path.join(process.cwd(), 'pages/api')
 export function getSortedPostsData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames
+  const allPostsData: any[] = fileNames
     .filter(file => /\.md$/.test(file))
     .map(fileName => {
       // Remove ".md" from file name to get id
@@ -31,13 +31,11 @@ export function getSortedPostsData() {
     })
 
   // Sort posts by date
-  return allPostsData.sort(({ date: a }, { date: b }) => {
-    if (a < b) {
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
       return 1
-    } else if (a > b) {
-      return -1
     } else {
-      return 0
+      return -1
     }
   })
 }
@@ -58,7 +56,7 @@ export async function getPostData(id) {
   return {
     id,
     contentHtml,
-    ...matterResult.data
+    ...(matterResult.data as { date: string; title: string })
   }
 }
 
@@ -82,7 +80,7 @@ export function getAllApiIds() {
   return fileNames
     .map(fileName => {
       return {
-        id: fileName.replace(/\.js$/, '')
+        id: fileName.replace(/\.tsx?$/, '')
       }
     })
 }

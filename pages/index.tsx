@@ -1,8 +1,9 @@
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Alert from '../components/alert'
 import Date from '../components/date'
-import Layout, { siteTitle } from '../components/layout/'
+import Layout, { siteTitle } from '../components/layout'
 import { getAllApiIds, getSortedPostsData } from '../lib/posts'
 import utilStyles from '../styles/utils.module.css'
 
@@ -59,7 +60,7 @@ export default function Home({ allPostsData, apiIds }) {
   )
 }
 
-export async function getStaticProps() { // getServerSideProps
+export const getStaticProps: GetStaticProps = async () => { // getServerSideProps
   const allPostsData = getSortedPostsData();
   const apiIds = getAllApiIds();
   return {

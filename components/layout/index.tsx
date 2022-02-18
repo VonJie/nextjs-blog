@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,10 +7,17 @@ import styles from './index.module.css'
 import utilStyles from '../../styles/utils.module.css'
 import { BASE_PATH } from '../../constants'
 
+
 const name = '木灬文'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, home }) {
+export default function Layout({
+  children,
+  home
+}: {
+  children: React.ReactNode;
+  home?: boolean
+}) {
   return (
     <div className={styles.container}>
       <Head>

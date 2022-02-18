@@ -16,7 +16,7 @@ export default function FirstPost() {
           console.log(`script loaded correctly, window.FB has been populated`)
         }
       />
-      <h1 class='title'>First Post</h1>
+      <h1 className='title'>First Post</h1>
       <style jsx>{`
         .title {
           color: yellow;

@@ -1,7 +1,10 @@
 import styles from './index.module.css'
 import cn from 'classnames'
+import React from 'react';
 
-export default function Alert({ children, type }) {
+type AlertType = 'success' | 'error';
+
+export default function Alert({ children, type }: { children: React.ReactNode; type: AlertType; }) {
   return (
     <div
       className={cn({
